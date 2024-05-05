@@ -1,0 +1,108 @@
+.welcomeHeader {
+  padding: 8px 16px;
+}
+.mainContentArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+  flex: 1;
+}
+.jobsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 10px;
+  padding: 4px 50px;
+
+  column-gap: 10px;
+  flex: 1;
+  overflow: auto;
+}
+
+.jobCard {
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+  padding: 20px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* .jobCard:hover {
+  overflow: auto;
+} */
+.jobHeader {
+  display: flex;
+  height: 50px;
+  /* background-color: aqua; */
+  gap: 10px;
+}
+.companyImage {
+  height: 100%;
+  /* background-color: black; */
+}
+.companyJobHead {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.companyName {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #8b8b8b;
+  cursor: pointer;
+}
+.companyName:hover {
+  text-decoration: underline;
+}
+.jobRole {
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.jobLocation {
+  font-size: 10px;
+  text-transform: capitalize;
+  padding: 10px 60px;
+}
+.salaryRange {
+  color: rgb(77, 89, 106);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.abtCompanyHeader {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.aboutUs {
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.jobDescription {
+  flex: 1;
+  font-size: 12px;
+  line-height: 2;
+  overflow: hidden;
+}
+.jobDescription:hover {
+  overflow: auto;
+}
+.jobExperience {
+  font-size: 12px;
+  color: #8b8b8b;
+  padding: 5px 0px;
+}
+.jobApplyBtn {
+  padding: 5px;
+  border-radius: 8px;
+  background-color: #55efc4;
+  border: 0.5px solid #00a677;
+  cursor: pointer;
+}
+.jobApplyBtn:hover {
+  border: 0.5px solid red;
+}

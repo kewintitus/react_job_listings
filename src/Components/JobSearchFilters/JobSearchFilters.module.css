@@ -1,0 +1,7 @@
+.filtersWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: stretch;
+  padding: 4px 50px;
+  gap: 5px;
+}

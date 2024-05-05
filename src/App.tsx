@@ -1,21 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getJobs, setJobs } from './slice/jobSlice';
+import { getFilters, getJobs, setJobs } from './slice/jobSlice';
+import MainContent from './Components/MainContent';
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const dispatch = useDispatch();
-  const selectedJobs = useSelector(getJobs);
-  console.log(selectedJobs.jobs);
+  // const selectedJobs = useSelector(getJobs);
+  console.log();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const fetchData = async () => {
+  const [limit, setLimit] = useState(10);
+  const increaseLimitHandler = () => {
+    setLimit(limit + 10);
+  };
+
+  const selectedFilters = useSelector(getFilters);
+  console.log('selected filters', selectedFilters);
+
+  const fetchData = async (limit: number) => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const body = JSON.stringify({
-      limit: 10,
+      limit: limit,
       offset: 0,
     });
 
@@ -32,39 +42,64 @@ function App() {
       const text = await data.text();
 
       const json = await JSON.parse(text);
+      console.log(json?.jdList);
+      const jobsList =
+        json?.jdList &&
+        json?.jdList.map((job) => {
+          return { ...job, selected: true };
+        });
 
-      dispatch(setJobs(json?.jdList));
+      // dispatch(setJobs({ jobs: jobsList, filters: selectedFilters }));
+      dispatch(setJobs({ jobs: jobsList }));
     } catch (error) {
       console.log(error);
     }
   };
+  const handleIntersection: IntersectionObserverCallback = (entries) => {
+    const target = entries[0];
+    if (target.isIntersecting) {
+      // Fetch more data if container is in view and not currently loading
+      increaseLimitHandler();
+    }
+  };
+
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(limit);
+  }, [limit]);
+
+  useEffect(() => {
+    // Initialize IntersectionObserver
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    });
+
+    // Observe the container element
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    // Cleanup function
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [limit]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="appContainer">
+      <div className="appArea">
+        <section className="sidebar"></section>
+        <section className="content">
+          <MainContent ref={containerRef}></MainContent>
+          {/* <div ref={containerRef}></div> */}
+          <button onClick={increaseLimitHandler}>+</button>
+        </section>
+        <section className="profile"></section>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 

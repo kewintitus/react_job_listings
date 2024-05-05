@@ -1,0 +1,21 @@
+.jobNavWrapper {
+  width: 100%;
+  /* background-color: aqua; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.jobNavItem {
+  padding: 4px 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.jobNavItem__active {
+  border-bottom: 1px solid #3522e2;
+}
