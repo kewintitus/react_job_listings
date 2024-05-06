@@ -5,3 +5,6 @@
   outline: 1px solid lightgray;
   border-radius: 4px;
 }
+.companyInput:focus {
+  outline: 2px solid rgb(0, 115, 255);
+}

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilters, getJobs, setJobs } from './slice/jobSlice';
@@ -102,7 +101,7 @@ function App() {
         <section className="content">
           <MainContent ref={containerRef}></MainContent>
           {/* <div ref={containerRef}></div> */}
-          <button onClick={increaseLimitHandler}>+</button>
+          {/* <button onClick={increaseLimitHandler}>+</button> */}
         </section>
         <section className="profile"></section>
       </div>

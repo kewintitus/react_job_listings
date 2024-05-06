@@ -6,3 +6,7 @@
   border-radius: 4px;
   width: 130px;
 }
+
+.basePayInput:focus {
+  outline: 2px solid rgb(0, 115, 255);
+}
