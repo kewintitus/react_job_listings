@@ -30,16 +30,16 @@ const MainContent = forwardRef<HTMLDivElement>((props, ref) => {
                   </div>
                 </div>
                 <div className={classes.jobLocation}>{job.location}</div>
-                <div
-                  className={classes.salaryRange}
-                >{`Estimated Salary ₹ ${job.minJdSalary} - ${job.maxJdSalary} LPA ✅`}</div>
+                <div className={classes.salaryRange}>{`Estimated Salary ₹ ${
+                  job.minJdSalary || 0
+                } - ${job.maxJdSalary} LPA ✅`}</div>
                 <div className={classes.abtCompanyHeader}>About Company</div>
                 <div className={classes.aboutUs}>About Us</div>
                 <div className={classes.jobDescription}>
                   {job.jobDetailsFromCompany}
                 </div>
                 <div className={classes.jobExperience}>
-                  Minimum experience: {job.minExp} Years
+                  Minimum experience: {job.minExp || 0} Years
                 </div>
                 <button className={classes.jobApplyBtn}>⚡Easy Apply</button>
               </div>

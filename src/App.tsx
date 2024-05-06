@@ -9,6 +9,9 @@ import MainContent from './Components/MainContent';
 function App() {
   // const [count, setCount] = useState(0);
   const dispatch = useDispatch();
+  const existingFilters = useSelector(getFilters);
+  const [isLoading, setIsLoading] = useState(false);
+
   // const selectedJobs = useSelector(getJobs);
   console.log();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,6 +38,7 @@ function App() {
       body,
     };
     try {
+      setIsLoading(true);
       const data = await fetch(
         'https://api.weekday.technology/adhoc/getSampleJdJSON',
         requestOptions
@@ -51,13 +55,16 @@ function App() {
 
       // dispatch(setJobs({ jobs: jobsList, filters: selectedFilters }));
       dispatch(setJobs({ jobs: jobsList }));
+      dispatch(setJobs({ jobs: jobsList, filters: existingFilters }));
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
   const handleIntersection: IntersectionObserverCallback = (entries) => {
     const target = entries[0];
-    if (target.isIntersecting) {
+    if (target.isIntersecting && !isLoading) {
       // Fetch more data if container is in view and not currently loading
       increaseLimitHandler();
     }
@@ -86,7 +93,7 @@ function App() {
         observer.unobserve(containerRef.current);
       }
     };
-  }, [limit]);
+  }, [handleIntersection, limit]);
 
   return (
     <div className="appContainer">

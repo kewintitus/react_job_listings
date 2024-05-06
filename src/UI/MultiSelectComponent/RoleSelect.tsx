@@ -41,6 +41,7 @@ const RoleSelect = (props: Props) => {
       <Select
         onChange={handleChange}
         // ref={roleRef}
+        placeholder="Select role"
         value={selectedOptions}
         options={options}
         // styles={customStyles}

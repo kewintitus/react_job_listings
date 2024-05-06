@@ -18,13 +18,13 @@ interface JobDetails {
 }
 
 interface FiltersType {
-  role?: string[];
-  companyName?: string;
+  role?: string[] | null | [] | undefined;
+  companyName?: string | null | undefined;
   location?: string;
   workType?: string;
   techStack?: string[];
-  minExperience?: number;
-  minBasePay?: number;
+  minExperience?: number | null | undefined;
+  minBasePay?: number | null;
 }
 
 type sliceDataType = {
@@ -51,21 +51,21 @@ const jobSlice = createSlice({
   initialState,
   reducers: {
     setJobs(state, action: { payload: sliceDataType }) {
-      console.log(action);
+      console.log('setting all true');
       if (!action.payload?.filters) {
         return {
           filters: state.filters,
           jobs: action.payload.jobs?.map((job) => {
-            job.selected = true;
             return job;
           }),
         };
       }
+      let filteredArr = state.jobs;
 
       if (action.payload?.filters) {
         const filters = action.payload?.filters;
-        let filteredArr = state.jobs;
-        console.log(filters, action.payload);
+        // let filteredArr = state.jobs;
+        console.log(filters, action.payload, 'infilter');
 
         if (action.payload?.filters?.role) {
           filteredArr?.forEach((job) => {
@@ -75,6 +75,70 @@ const jobSlice = createSlice({
               filteredArr?.forEach((job) => {
                 job.selected = true;
               });
+            } else {
+              job.selected = false;
+            }
+          });
+        }
+        if (action.payload?.filters?.minExperience) {
+          console.log('setting minexp');
+          filteredArr?.forEach((job) => {
+            if (
+              job.minExp >= action.payload?.filters?.minExperience &&
+              job.selected == true
+            ) {
+              job.selected = true;
+            } else {
+              job.selected = false;
+            }
+          });
+        }
+        if (action.payload?.filters?.companyName) {
+          filteredArr?.forEach((job) => {
+            const lCompanyName = job.companyName.toLowerCase();
+            const lFilterCompanyName =
+              action.payload.filters?.companyName?.toLowerCase();
+
+            if (
+              lCompanyName.includes(lFilterCompanyName) &&
+              job.selected == true
+            ) {
+              job.selected = true;
+            } else {
+              job.selected = false;
+            }
+          });
+        }
+        if (
+          action.payload?.filters?.location ||
+          action.payload?.filters?.location == ''
+        ) {
+          filteredArr?.forEach((job) => {
+            const lowerLocation = job.location.toLowerCase();
+            const lFilterLocation =
+              action.payload?.filters?.location?.toLowerCase();
+
+            if (
+              lowerLocation.includes(lFilterLocation) &&
+              job.selected == true
+            ) {
+              job.selected = true;
+            } else {
+              job.selected = false;
+            }
+          });
+        }
+
+        if (
+          action.payload?.filters?.minBasePay ||
+          action.payload?.filters?.minBasePay == 0
+        ) {
+          filteredArr?.forEach((job) => {
+            const minJobPay = job.minJdSalary;
+            const minRequiredPay = action.payload?.filters?.minBasePay;
+            // if (minJobPay || minRequiredPay) return;
+            if (minJobPay >= minRequiredPay && job.selected) {
+              job.selected = true;
             } else {
               job.selected = false;
             }
@@ -99,6 +163,21 @@ export const getJobs = (state: RootState) => {
 export const getFilters = (state: RootState) => {
   return state.jobs.filters;
 };
+
+export const getCompanyNames = (state: RootState) => {
+  const companies = state.jobs.jobs?.map((job) => {
+    return job.companyName;
+  });
+  return [...new Set(companies)];
+};
+
+// export const getLocations = (state: RootState) => {
+//   const locations = state.jobs.jobs?.map((job) => {
+//     return job.location;
+//   });
+//   console.log([...new Set(locations)]);
+//   return [...new Set(locations)];
+// };
 // export const { setName } = userSlice.actions;
 
 export const { setJobs, updateFilters } = jobSlice.actions;
