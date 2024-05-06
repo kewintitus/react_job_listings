@@ -12,7 +12,7 @@ const SearchLocation = (props: Props) => {
   const locationSearchRef = useRef<HTMLInputElement | null>(null);
 
   const inputChangeHandler = (e) => {
-    console.log(locationSearchRef.current?.value);
+    // console.log(locationSearchRef.current?.value);
     props.setSelectedLocation(locationSearchRef.current?.value || null);
   };
   return (

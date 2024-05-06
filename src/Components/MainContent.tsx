@@ -8,7 +8,7 @@ import JobSearchFilters from './JobSearchFilters/JobSearchFilters';
 
 const MainContent = forwardRef<HTMLDivElement>((props, ref) => {
   const selectedJobs = useSelector(getJobs);
-  console.log(selectedJobs);
+  // console.log(selectedJobs);
 
   return (
     <div className={classes.mainContentArea}>
@@ -19,7 +19,7 @@ const MainContent = forwardRef<HTMLDivElement>((props, ref) => {
         {selectedJobs?.map((job) => {
           if (job.selected)
             return (
-              <div className={classes.jobCard}>
+              <div key={job.jdUid} className={classes.jobCard}>
                 <div className={classes.jobHeader}>
                   <img src={job.logoUrl} className={classes.companyImage}></img>
                   <div className={classes.companyJobHead}>

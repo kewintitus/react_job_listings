@@ -51,7 +51,7 @@ const jobSlice = createSlice({
   initialState,
   reducers: {
     setJobs(state, action: { payload: sliceDataType }) {
-      console.log('setting all true');
+      // console.log('setting all true');
       if (!action.payload?.filters) {
         return {
           filters: state.filters,
@@ -65,7 +65,7 @@ const jobSlice = createSlice({
       if (action.payload?.filters) {
         const filters = action.payload?.filters;
         // let filteredArr = state.jobs;
-        console.log(filters, action.payload, 'infilter');
+        // console.log(filters, action.payload, 'infilter');
 
         if (action.payload?.filters?.role) {
           filteredArr?.forEach((job) => {
@@ -81,7 +81,7 @@ const jobSlice = createSlice({
           });
         }
         if (action.payload?.filters?.minExperience) {
-          console.log('setting minexp');
+          // console.log('setting minexp');
           filteredArr?.forEach((job) => {
             if (
               job.minExp >= action.payload?.filters?.minExperience &&

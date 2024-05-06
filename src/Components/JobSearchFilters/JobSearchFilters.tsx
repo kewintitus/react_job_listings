@@ -66,7 +66,7 @@ const JobSearchFilters = () => {
         },
       })
     );
-    console.log('effect triggered');
+    // console.log('effect triggered');
   }, [
     selectedRole,
     selectedCompany,

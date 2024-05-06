@@ -12,7 +12,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   // const selectedJobs = useSelector(getJobs);
-  console.log();
+  // console.log();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [limit, setLimit] = useState(10);
@@ -21,7 +21,7 @@ function App() {
   };
 
   const selectedFilters = useSelector(getFilters);
-  console.log('selected filters', selectedFilters);
+  // console.log('selected filters', selectedFilters);
 
   const fetchData = async (limit: number) => {
     const myHeaders = new Headers();
@@ -45,7 +45,7 @@ function App() {
       const text = await data.text();
 
       const json = await JSON.parse(text);
-      console.log(json?.jdList);
+      // console.log(json?.jdList);
       const jobsList =
         json?.jdList &&
         json?.jdList.map((job) => {
@@ -57,7 +57,7 @@ function App() {
       dispatch(setJobs({ jobs: jobsList, filters: existingFilters }));
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setIsLoading(false);
     }
   };

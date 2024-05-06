@@ -10,7 +10,7 @@ const CompanySearch = (props: Props) => {
   const companySearchRef = useRef<HTMLInputElement | null>(null);
 
   const inputChangeHandler = () => {
-    console.log(companySearchRef.current?.value);
+    // console.log(companySearchRef.current?.value);
     props.setSelectedCompany(companySearchRef.current?.value || null);
   };
   return (

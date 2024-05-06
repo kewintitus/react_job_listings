@@ -30,7 +30,7 @@ type OptionType = { value: number; label: string };
 const ExperienceSelect = (props: Props) => {
   const [selectedOptions, setSelectedOptions] = useState<number>(null);
   const handleChange = (selectedOptions: OptionType[] | []) => {
-    console.log(selectedOptions);
+    // console.log(selectedOptions);
     setSelectedOptions(selectedOptions);
     props.setSelectedMinExperience(selectedOptions.value);
     // props.setSelectedRole(() => {
