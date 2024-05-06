@@ -21,6 +21,7 @@
   height: 100%;
   /* background-color: yellow; */
   flex-direction: column;
+  width: 100%;
 }
 .profile {
   flex: 0.75;

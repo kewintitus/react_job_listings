@@ -19,6 +19,12 @@
   overflow: auto;
 }
 
+@media (max-width: 500px) {
+  .jobsWrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
 .jobCard {
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
