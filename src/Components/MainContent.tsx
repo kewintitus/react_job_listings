@@ -1,12 +1,10 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import classes from './MainContent.module.css';
 import { Paper } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { getJobs } from '../slice/jobSlice';
 import JobNav from './Nav/JobNav';
 import JobSearchFilters from './JobSearchFilters/JobSearchFilters';
-
-type Props = {};
 
 const MainContent = forwardRef<HTMLDivElement>((props, ref) => {
   const selectedJobs = useSelector(getJobs);

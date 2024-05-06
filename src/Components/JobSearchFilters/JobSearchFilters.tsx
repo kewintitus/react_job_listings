@@ -8,8 +8,6 @@ import CompanySearch from '../../UI/InputComponenet/CompanySearch';
 import SearchLocation from '../../UI/InputComponenet/SearchLocation';
 import MinBasePay from '../../UI/InputComponenet/MinBasePay';
 
-type Props = {};
-
 export type SelectedFiltersType = {
   role: string[] | null | undefined;
   companyName: string | null;
@@ -29,24 +27,15 @@ export type MinWorkExpType = number | null;
 export type MinBasePayType = number | null;
 
 const JobSearchFilters = () => {
-  const [selectedFilters, setSelectedFilters] = useState<SelectedFiltersType>({
-    role: [],
-    companyName: '',
-    location: '',
-    workType: '',
-    techStack: [],
-    minExperience: null,
-    minBasePay: 0,
-  });
   const [selectedRole, setSelectedRole] = useState<SelectedRoleType>([]);
   const [selectedCompany, setSelectedCompany] =
     useState<SelectedCompanyType>('');
   const [selectedLocation, setSelectedLocation] =
     useState<SelectedLocationType>('');
-  const [selectedWorkType, setSelectedWorkType] =
-    useState<SelectedWorkTypeType>('');
-  const [selectedTechStack, setSelectedTechStack] =
-    useState<SelectedTechStackType>([]);
+  // const [selectedWorkType, setSelectedWorkType] =
+  //   useState<SelectedWorkTypeType>('');
+  // const [selectedTechStack, setSelectedTechStack] =
+  //   useState<SelectedTechStackType>([]);
   const [selectedMinExperience, setSelectedMinExperience] =
     useState<MinWorkExpType>(null);
 
@@ -82,10 +71,9 @@ const JobSearchFilters = () => {
     selectedRole,
     selectedCompany,
     selectedLocation,
-    selectedWorkType,
-    selectedTechStack,
     selectedMinExperience,
     minBasePay,
+    dispatch,
   ]);
 
   return (

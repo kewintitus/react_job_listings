@@ -9,9 +9,9 @@ type Props = {
 const MinBasePay = (props: Props) => {
   const basePayRef = useRef<HTMLInputElement | null>(null);
 
-  const inputChangeHandler = (e) => {
+  const inputChangeHandler = () => {
     console.log(basePayRef.current?.value);
-    props.setMinBasePay(basePayRef.current?.value || null);
+    props.setMinBasePay(Number(basePayRef.current?.value));
   };
   return (
     <input
@@ -19,7 +19,7 @@ const MinBasePay = (props: Props) => {
       placeholder="BasePay (LPA)"
       onChange={inputChangeHandler}
       className={classes.basePayInput}
-      type="text"
+      type="number"
     ></input>
   );
 };

@@ -1,9 +1,6 @@
-import React from 'react';
-import classes from './jobCard.module.css';
+// type Props = {};
 
-type Props = {};
-
-const JobCard = (props: Props) => {
+const JobCard = () => {
   return <div>JobCard</div>;
 };
 

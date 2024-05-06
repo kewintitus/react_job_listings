@@ -60,7 +60,7 @@ const jobSlice = createSlice({
           }),
         };
       }
-      let filteredArr = state.jobs;
+      const filteredArr = state.jobs;
 
       if (action.payload?.filters) {
         const filters = action.payload?.filters;
